@@ -461,7 +461,34 @@ setInterval(buatLove,500);
 setInterval(sparkle,300);
 
 
+function buatConfetti(){
 
+let c=document.createElement("div");
+
+c.className="confetti";
+
+let emoji=[
+"❤️","💖","✨","🌸","💕","🎉"
+];
+
+
+c.innerHTML=emoji[Math.floor(Math.random()*emoji.length)];
+
+c.style.left=Math.random()*100+"%";
+
+c.style.animationDuration=(2+Math.random()*2)+"s";
+
+
+document.body.appendChild(c);
+
+
+setTimeout(()=>{
+
+c.remove();
+
+},3000);
+
+}
 </script>
 
 
