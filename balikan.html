@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mau Balikan? ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+
+#countdown{
+position:absolute;
+font-size:120px;
+font-weight:bold;
+color:white;
+animation:zoom .8s;
+}
+
+
+@keyframes zoom{
+0%{
+transform:scale(0);
+opacity:0;
+}
+
+50%{
+transform:scale(1.5);
+}
+
+100%{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+
+
+.card{
+
+display:none;
+
+background:white;
+
+width:360px;
+
+padding:30px;
+
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:0 0 40px #ff3864;
+
+animation:muncul 1s;
+
+}
+
+
+@keyframes muncul{
+
+from{
+transform:scale(0) rotate(180deg);
+}
+
+to{
+transform:scale(1);
+}
+
+}
+
+
+
+.cat{
+
+font-size:80px;
+
+animation:goyang 1s infinite;
+
+}
+
+
+@keyframes goyang{
+
+50%{
+transform:rotate(10deg);
+}
+
+}
+
+
+
+h1{
+
+color:#ff3864;
+
+}
+
+
+p{
+
+margin:20px;
+
+color:#555;
+
+}
+
+
+
+button{
+
+border:none;
+
+padding:13px 35px;
+
+border-radius:40px;
+
+font-size:18px;
+
+margin:10px;
+
+cursor:pointer;
+
+}
+
+
+#yes{
+
+background:#ff3864;
+
+color:white;
+
+}
+
+
+#no{
+
+background:#333;
+
+color:white;
+
+position:absolute;
+
+}
+
+
+
+
+#hasil{
+
+display:none;
+
+margin-top:20px;
+
+font-size:22px;
+
+color:#ff3864;
+
+font-weight:bold;
+
+}
+
+
+
+.love{
+
+position:absolute;
+
+font-size:30px;
+
+animation:naik 4s linear;
+
+}
+
+
+
+@keyframes naik{
+
+0%{
+
+transform:translateY(100vh);
+
+}
+
+100%{
+
+transform:translateY(-100vh);
+
+opacity:0;
+
+}
+
+}
+
+
+
+.star{
+
+position:absolute;
+
+color:white;
+
+animation:jatuh 3s linear;
+
+}
+
+
+
+@keyframes jatuh{
+
+from{
+
+transform:translateY(100vh);
+
+}
+
+to{
+
+transform:translateY(-100vh);
+
+opacity:0;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="countdown">
+3
+</div>
+
+
+
+<div class="card" id="card">
+
+
+<div class="cat">
+🐱❤️
+</div>
+
+
+<h1>
+Aku Kangen Kamu
+</h1>
+
+
+<p>
+
+Aku punya satu pertanyaan penting...
+
+<br><br>
+
+Aku masih sayang kamu.
+
+<br>
+
+Maukah kamu balikan sama aku? 🥺❤️
+
+</p>
+
+
+
+<button id="yes">
+YES ❤️
+</button>
+
+
+<button id="no">
+NO 😭
+</button>
+
+
+
+<div id="hasil">
+
+YEEEAAAY ❤️😭
+
+<br><br>
+
+Kita mulai lagi ya...
+
+Aku janji jadi lebih baik 💕
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+let angka=3;
+
+let count=document.getElementById("countdown");
+
+let timer=setInterval(()=>{
+
+
+angka--;
+
+
+if(angka>0){
+
+count.innerHTML=angka;
+
+count.style.animation="none";
+
+setTimeout(()=>{
+
+count.style.animation="zoom .8s";
+
+},10);
+
+
+}
+
+else{
+
+
+clearInterval(timer);
+
+count.style.display="none";
+
+document.getElementById("card").style.display="block";
+
+
+}
+
+
+
+},1000);
+
+
+
+
+
+// tombol NO kabur
+
+let no=document.getElementById("no");
+
+
+no.addEventListener("mouseover",()=>{
+
+
+let x=Math.random()*(window.innerWidth-100);
+
+let y=Math.random()*(window.innerHeight-50);
+
+
+no.style.left=x+"px";
+
+no.style.top=y+"px";
+
+
+});
+
+
+
+
+// tombol YES
+
+document.getElementById("yes").onclick=()=>{
+
+
+document.getElementById("hasil").style.display="block";
+
+
+document.querySelector(".cat").innerHTML="🐱💖";
+
+
+buatLove();
+
+
+};
+
+
+
+
+// love terbang
+
+function buatLove(){
+
+
+let love=document.createElement("div");
+
+love.className="love";
+
+love.innerHTML="❤️";
+
+love.style.left=Math.random()*100+"%";
+
+
+document.body.appendChild(love);
+
+
+setTimeout(()=>{
+
+love.remove();
+
+},4000);
+
+
+}
+
+
+
+
+// sparkle
+
+function sparkle(){
+
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.innerHTML="✨";
+
+star.style.left=Math.random()*100+"%";
+
+
+document.body.appendChild(star);
+
+
+setTimeout(()=>{
+
+star.remove();
+
+},3000);
+
+
+}
+
+
+setInterval(buatLove,500);
+
+setInterval(sparkle,300);
+
+
+
+</script>
+
+
+</body>
+  </html>
