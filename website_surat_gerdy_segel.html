@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untukmu — Sekali Lagi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  min-height:100vh; overflow-x:hidden;
+  font-family:Georgia,"Times New Roman",serif;
+  color:#4d2932;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(255,255,255,.9),transparent 30%),
+    linear-gradient(135deg,#fff8f8,#f9e4e8 55%,#fff);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+  background-image:radial-gradient(#b86b7c .7px,transparent .7px);
+  background-size:18px 18px;
+}
+.hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.heart{position:absolute;color:#bd667c;opacity:0;animation:rise 11s linear infinite}
+@keyframes rise{
+  0%{transform:translateY(105vh) rotate(0);opacity:0}
+  15%{opacity:.35}85%{opacity:.2}
+  100%{transform:translateY(-15vh) rotate(360deg);opacity:0}
+}
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:25px 16px;position:relative;z-index:1;text-align:center
+}
+.intro{max-width:760px}
+.kicker{letter-spacing:5px;text-transform:uppercase;font-size:11px;color:#a85b6e}
+h1{font-size:clamp(42px,9vw,76px);color:#873a50;margin:17px 0 12px;line-height:1}
+.intro p{font-size:18px;line-height:1.8;color:#68404a;max-width:620px;margin:auto}
+.scroll{display:inline-block;margin-top:28px;padding:12px 25px;border-radius:999px;
+background:#913f57;color:#fff;text-decoration:none;box-shadow:0 10px 25px #913f5733}
+.paper-area{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:50px 15px;position:relative;z-index:1}
+.envelope{
+  width:min(700px,100%);position:relative;filter:drop-shadow(0 25px 30px rgba(91,38,52,.18));
+}
+.envelope-back{
+  position:absolute;inset:0;border-radius:8px;background:#f2d8ce;transform:translateY(12px)
+}
+.paper{
+  position:relative;background:#fffdf7;min-height:430px;padding:42px 34px 35px;
+  border:1px solid #e8d9c8;border-radius:5px;
+  box-shadow:0 8px 20px rgba(82,45,45,.08);
+  background-image:linear-gradient(transparent 31px,#eadfe0 32px);
+  background-size:100% 32px;
+  transform-origin:top center;
+}
+.seal{
+  position:absolute;left:50%;top:-30px;transform:translateX(-50%);
+  width:76px;height:76px;border-radius:50%;border:5px solid #f7d6d8;
+  background:#a83f58;color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:30px;box-shadow:0 7px 16px #65263a44;cursor:pointer;z-index:5;
+  transition:transform .35s,opacity .35s;
+}
+.seal:hover{transform:translateX(-50%) scale(1.08)}
+.seal small{position:absolute;top:82px;white-space:nowrap;color:#9d5969;font:italic 13px Georgia}
+.letter-content{opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .8s .35s,transform .8s .35s}
+.open .letter-content{opacity:1;transform:none;pointer-events:auto}
+.open .seal{transform:translateX(-50%) scale(1.15) rotate(18deg);opacity:0;pointer-events:none}
+.paper h2{text-align:center;color:#913f57;font-size:29px;margin-bottom:24px}
+.paper p{font-size:17px;line-height:2;margin-bottom:14px}
+.signature{text-align:right;margin-top:25px;color:#8f4b5d;font-style:italic}
+.by{text-align:center;margin-top:25px;padding-top:17px;border-top:1px solid #dfc9ca;color:#a05267;font-style:italic}
+.final{padding:55px 18px 80px;text-align:center;position:relative;z-index:1}
+.final h2{font-size:32px;color:#8e3c53}
+.final p{max-width:600px;margin:14px auto;line-height:1.8;font-size:17px}
+footer{text-align:center;padding:20px;color:#a05c6e;font-size:13px;position:relative;z-index:1}
+@media(max-width:600px){
+ .paper{padding:38px 21px 28px;min-height:500px}
+ .paper p{font-size:15.5px;line-height:1.9}
+ .paper h2{font-size:25px}
+}
+</style>
+</head>
+<body>
+<div class="hearts">
+ <span class="heart" style="left:8%;font-size:22px;animation-delay:0s">♥</span>
+ <span class="heart" style="left:25%;font-size:17px;animation-delay:3s">♡</span>
+ <span class="heart" style="left:45%;font-size:25px;animation-delay:6s">♥</span>
+ <span class="heart" style="left:67%;font-size:18px;animation-delay:1s">♡</span>
+ <span class="heart" style="left:86%;font-size:24px;animation-delay:4s">♥</span>
+</div>
+
+<section class="hero">
+ <div class="intro">
+   <div class="kicker">Sebuah pesan yang mungkin terakhir</div>
+   <h1>Untuk Kamu</h1>
+   <p>Ada sesuatu yang sudah lama ingin aku sampaikan. Kali ini aku tidak ingin menyembunyikannya lagi.</p>
+   <a class="scroll" href="#surat">Ada surat untukmu ♥</a>
+ </div>
+</section>
+
+<section class="paper-area" id="surat">
+ <div class="envelope">
+   <div class="envelope-back"></div>
+   <div class="paper" id="paper">
+     <button class="seal" id="seal" aria-label="Buka segel surat">♥<small>Klik segelnya</small></button>
+     <div class="letter-content">
+       <h2>Aku Ingin Kembali</h2>
+       <p>Sekali lagi aku bilang, dan mungkin ini akan menjadi terakhir kalinya aku mengatakannya.</p>
+       <p><strong>Aku ingin kembali.</strong></p>
+       <p>Bukan karena aku tidak bisa melanjutkan hidup tanpa kamu. Bukan juga karena aku takut sendirian. Tapi karena setelah semua yang terjadi, aku masih menyadari satu hal: <strong>hatiku masih memilih kamu.</strong></p>
+       <p>Aku tahu aku pernah salah. Aku tahu ada sikap dan perkataanku yang membuat kamu terluka. Mungkin ada luka yang sampai sekarang belum benar-benar sembuh karena kesalahanku. Untuk itu, aku benar-benar minta maaf.</p>
+       <p>Aku tidak ingin kembali hanya untuk mengulang cerita yang sama. Aku ingin kembali untuk memperbaiki apa yang pernah aku hancurkan. Aku ingin belajar menjadi seseorang yang lebih baik untuk kamu, bukan hanya lewat janji, tapi lewat sikap dan tindakan.</p>
+       <p>Kalau selama ini aku terlalu terlambat menyadarinya, maafkan aku.</p>
+       <p>Kalau selama ini aku membuatmu merasa tidak cukup dicintai, maafkan aku.</p>
+       <p>Dan kalau selama ini aku membuatmu merasa bahwa kehilanganmu bukan sesuatu yang akan aku sesali, ternyata aku salah besar.</p>
+       <p>Karena sekarang aku tahu, kehilangan kamu adalah salah satu hal yang paling membuatku sadar tentang betapa berharganya kamu dalam hidupku.</p>
+       <p>Aku tidak tahu apakah masih ada sedikit ruang untukku di hatimu. Aku juga tidak tahu apakah kamu masih mau mendengarkan semua ini.</p>
+       <p>Tapi sebelum benar-benar menyerah, <strong>sekali ini saja aku ingin jujur.</strong></p>
+       <p><strong>Aku masih sayang.</strong><br><strong>Aku masih peduli.</strong><br><strong>Aku masih ingin memperbaiki semuanya.</strong><br><strong>Dan aku masih ingin kita.</strong></p>
+       <p>Kalau masih ada satu kesempatan, sekecil apa pun itu, izinkan aku membuktikan bahwa kali ini aku benar-benar serius.</p>
+       <p>Aku tidak meminta kamu melupakan semua kesalahanku. Aku hanya meminta satu kesempatan untuk menunjukkan bahwa aku bisa belajar dari semuanya.</p>
+       <p><strong>Sekali lagi aku bilang, mungkin untuk terakhir kalinya...</strong></p>
+       <p><strong>Aku ingin kembali.</strong></p>
+       <p>Bukan untuk mengulang masa lalu. Tapi untuk membuat cerita baru bersama kamu, dengan aku yang lebih menghargai, lebih memahami, dan lebih menjaga.</p>
+       <p>Kalau pada akhirnya jawabanmu tetap bukan aku, aku akan belajar menerima.</p>
+       <p>Tapi setidaknya, kamu harus tahu satu hal:</p>
+       <p><strong>Aku pernah benar-benar mencintaimu. Dan sampai hari ini, aku masih ingin memperjuangkan kita.</strong></p>
+       <div class="signature">— Gerdy</div>
+       <div class="by">Bacaan by Gerdy</div>
+     </div>
+   </div>
+ </div>
+</section>
+
+<section class="final">
+ <h2>Terima kasih sudah membaca. ♥</h2>
+ <p>Aku tidak tahu apa jawabanmu setelah membaca surat ini. Apa pun itu, terima kasih karena sudah meluangkan waktu untuk membaca isi hatiku.</p>
+</section>
+<footer>Dibuat dengan tulus — Gerdy</footer>
+
+<script>
+document.getElementById("seal").addEventListener("click", function(){
+  document.getElementById("paper").classList.add("open");
+  setTimeout(()=>document.getElementById("paper").scrollIntoView({behavior:"smooth",block:"start"}),250);
+});
+</script>
+</body>
+</html>
