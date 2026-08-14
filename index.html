@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Untuk Kamu — Sekali Lagi</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{min-height:100vh;overflow-x:hidden;font-family:Georgia,"Times New Roman",serif;color:#4d2932;background:radial-gradient(circle at 20% 10%,#fff,transparent 30%),linear-gradient(135deg,#fff8f8,#f6e0e5 55%,#fff)}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#b86b7c .7px,transparent .7px);background-size:18px 18px}
+.hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}.heart{position:absolute;color:#bd667c;opacity:0;animation:rise 11s linear infinite}
+@keyframes rise{0%{transform:translateY(105vh) rotate(0);opacity:0}15%{opacity:.35}85%{opacity:.2}100%{transform:translateY(-15vh) rotate(360deg);opacity:0}}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:25px 16px;position:relative;z-index:1;text-align:center}
+.intro{max-width:760px}.kicker{letter-spacing:5px;text-transform:uppercase;font-size:11px;color:#a85b6e}
+h1{font-size:clamp(42px,9vw,76px);color:#873a50;margin:17px 0 12px;line-height:1}
+.intro p{font-size:18px;line-height:1.8;color:#68404a;max-width:620px;margin:auto}
+.scroll,.music-btn{display:inline-block;margin-top:28px;padding:12px 25px;border-radius:999px;background:#913f57;color:#fff;text-decoration:none;box-shadow:0 10px 25px #913f5733;border:0;cursor:pointer;font-family:inherit}
+.paper-area{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:60px 15px;position:relative;z-index:1}
+.envelope{width:min(720px,100%);position:relative;filter:drop-shadow(0 25px 30px rgba(91,38,52,.18))}
+.envelope-back{position:absolute;inset:0;border-radius:8px;background:#f0d4ca;transform:translateY(12px)}
+.paper{position:relative;background:#fffdf7;min-height:510px;padding:45px 35px 35px;border:1px solid #e8d9c8;border-radius:5px;box-shadow:0 8px 20px rgba(82,45,45,.08);background-image:linear-gradient(transparent 31px,#eadfe0 32px);background-size:100% 32px;transform-origin:top center}
+.seal{position:absolute;left:50%;top:-30px;transform:translateX(-50%);width:76px;height:76px;border-radius:50%;border:5px solid #f7d6d8;background:#a83f58;color:#fff;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 7px 16px #65263a44;cursor:pointer;z-index:5;transition:transform .35s,opacity .35s}
+.seal:hover{transform:translateX(-50%) scale(1.08)}.seal small{position:absolute;top:82px;white-space:nowrap;color:#9d5969;font:italic 13px Georgia}
+.letter-content{opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .8s .35s,transform .8s .35s}.open .letter-content{opacity:1;transform:none;pointer-events:auto}.open .seal{transform:translateX(-50%) scale(1.15) rotate(18deg);opacity:0;pointer-events:none}
+.paper h2{text-align:center;color:#913f57;font-size:29px;margin-bottom:23px}.paper p{font-size:17px;line-height:2;margin-bottom:14px}.by{text-align:center;margin-top:25px;padding-top:17px;border-top:1px solid #dfc9ca;color:#a05267;font-style:italic}
+.next{display:block;margin:25px auto 0}.hidden{display:none}
+.final{padding:55px 18px 80px;text-align:center;position:relative;z-index:1}.final h2{font-size:32px;color:#8e3c53}.final p{max-width:600px;margin:14px auto;line-height:1.8;font-size:17px}
+footer{text-align:center;padding:20px;color:#a05c6e;font-size:13px;position:relative;z-index:1}
+.player{position:fixed;right:16px;bottom:16px;z-index:10}.music-btn{margin:0;width:52px;height:52px;padding:0;border-radius:50%;font-size:20px}
+.jadwal{padding:20px 16px 90px;position:relative;z-index:1;display:flex;justify-content:center}
+.jadwal-card{width:min(620px,100%);background:#fffdf7;border:1px solid #e8d9c8;border-radius:14px;box-shadow:0 15px 30px rgba(82,45,45,.12);padding:38px 30px;text-align:center}
+.jadwal-card .kicker{letter-spacing:4px;text-transform:uppercase;font-size:11px;color:#a85b6e}
+.jadwal-card h2{color:#913f57;font-size:26px;margin:12px 0 10px}
+.jadwal-desc{font-size:16px;line-height:1.8;color:#68404a;margin-bottom:24px}
+.jadwal-form{display:flex;flex-direction:column;gap:16px;text-align:left}
+.jadwal-form label{font-size:14px;color:#8e3c53;font-weight:bold;display:flex;flex-direction:column;gap:6px}
+.jadwal-form input,.jadwal-form textarea{font-family:inherit;font-size:15px;padding:11px 13px;border-radius:8px;border:1px solid #e3cbcf;background:#fffaf7;color:#4d2932;resize:vertical}
+.jadwal-form input:focus,.jadwal-form textarea:focus{outline:2px solid #d79aa9}
+#cetakBtn{border:0;font-size:15px;margin-top:6px;align-self:center}
+.printed{margin-top:28px;text-align:left}
+.printed-paper{background:#fffdf7;background-image:linear-gradient(transparent 30px,#eadfe0 31px);background-size:100% 31px;border:1px solid #e8d9c8;border-radius:8px;padding:26px 22px;box-shadow:0 8px 20px rgba(82,45,45,.1)}
+.printed-paper h3{color:#913f57;font-size:21px;margin-bottom:14px;text-align:center}
+.printed-paper .row{margin-bottom:10px;font-size:15.5px;line-height:1.7}
+.printed-paper .row b{color:#8e3c53}
+.printed-paper .bacaan{margin-top:16px;padding-top:14px;border-top:1px dashed #dfc9ca;font-style:italic;font-size:15px;line-height:1.9;color:#7a4650}
+.reminder{text-align:center;margin-top:14px;font-size:13.5px;color:#a05267;font-style:italic}
+#kirimBtn{border:0;font-size:15px;display:block;margin:16px auto 0}
+@media(max-width:600px){.paper{padding:40px 21px 28px;min-height:560px}.paper p{font-size:15.5px;line-height:1.9}.paper h2{font-size:25px}.jadwal-card{padding:28px 18px}}
+</style>
+</head>
+<body>
+<div class="hearts">
+<span class="heart" style="left:8%;font-size:22px;animation-delay:0s">♥</span>
+<span class="heart" style="left:25%;font-size:17px;animation-delay:3s">♡</span>
+<span class="heart" style="left:45%;font-size:25px;animation-delay:6s">♥</span>
+<span class="heart" style="left:67%;font-size:18px;animation-delay:1s">♡</span>
+<span class="heart" style="left:86%;font-size:24px;animation-delay:4s">♥</span>
+</div>
+
+<section class="hero">
+<div class="intro">
+<div class="kicker">Sebuah pesan yang mungkin terakhir</div>
+<h1>Untuk Kamu</h1>
+<p>Ada sesuatu yang sudah lama ingin aku sampaikan. Buka suratnya perlahan, karena setiap halaman menyimpan bagian dari apa yang masih ada di hatiku.</p>
+<a class="scroll" href="#surat">Buka suratnya ♥</a>
+</div>
+</section>
+
+<section class="paper-area" id="surat">
+<div class="envelope">
+<div class="envelope-back"></div>
+<div class="paper" id="paper">
+<button class="seal" id="seal" aria-label="Buka segel surat">♥<small>Klik segelnya</small></button>
+<div class="letter-content" id="content"></div>
+</div>
+</div>
+</section>
+
+<section class="final">
+<h2>Terima kasih sudah membaca. ♥</h2>
+<p>Aku tidak tahu apa jawabanmu. Apa pun itu, terima kasih sudah membaca isi hatiku sampai selesai.</p>
+</section>
+
+<section class="jadwal" id="jadwal">
+<div class="jadwal-card">
+<div class="kicker">Satu permintaan terakhir</div>
+<h2>Isi Jadwal Ketemuan Kita</h2>
+<p class="jadwal-desc">Kalau kamu masih mau, isi kapan kita bisa ketemu ya. Nggak usah buru-buru, isi aja kalau kamu memang mau ketemu aku.</p>
+
+<div class="jadwal-form" id="jadwalForm">
+<label>Tanggal
+<input type="date" id="fTanggal">
+</label>
+<label>Jam
+<input type="time" id="fJam">
+</label>
+<label>Ketemu di mana?
+<input type="text" id="fTempat" placeholder="misalnya: Kesepuhan, atau tempat cuanki langganan kita">
+</label>
+<label>Pesan buat Gerdy (opsional)
+<textarea id="fPesan" rows="3" placeholder="Tulis sesuatu buat Gerdy..."></textarea>
+</label>
+<button class="scroll" id="cetakBtn">🖨️ Cetak Surat Jadwal</button>
+</div>
+
+<div class="printed hidden" id="printedArea">
+<div class="printed-paper" id="printedPaper"></div>
+<p class="reminder" id="reminderText"></p>
+<button class="scroll" id="kirimBtn">📩 Kirim ke Gerdy</button>
+</div>
+</div>
+</section>
+
+<footer>Dibuat dengan tulus — Gerdy</footer>
+
+<div class="player">
+<button class="music-btn" id="musicBtn" title="Putar / jeda musik">♫</button>
+<audio id="audio" loop preload="auto"><source src="bunga.mp3" type="audio/mpeg"></audio>
+</div>
+
+<script>
+const pages=[
+{title:"Sebelum Kamu Membuka Ini",body:[
+"Aku tidak tahu harus mulai dari mana, karena ada begitu banyak hal yang ingin aku sampaikan. Mungkin aku pernah mengatakannya, tapi kali ini aku ingin kamu membacanya sampai selesai.",
+"Karena ada satu hal yang sampai sekarang belum berubah...",
+"<strong>aku masih ingin kembali.</strong>",
+"Aku ingin kamu membaca semuanya bukan karena aku ingin memaksamu. Aku hanya ingin, untuk kali ini, kamu tahu apa yang sebenarnya ada di dalam hatiku.",
+],by:"Bacaan by Gerdy"},
+{title:"Aku Minta Maaf",body:[
+"<strong>Aku minta maaf untuk semuanya.</strong>",
+"Maaf untuk semua perkataan dan sikapku yang pernah membuat kamu kecewa. Maaf untuk egoku, untuk kesalahanku, dan untuk hal-hal yang mungkin membuat kamu merasa tidak dihargai atau tidak cukup dicintai.",
+"Maaf karena mungkin aku pernah membuat kamu menangis. Maaf karena pernah membuat kamu merasa sendirian padahal aku ada di dekatmu.",
+"Dulu mungkin aku terlalu keras kepala untuk memahami perasaanmu. Sekarang aku sadar, cinta bukan cuma tentang mengatakan sayang, tapi tentang menjaga, mendengarkan, memahami, dan menghargai.",
+"Aku tidak mau mencari alasan atas kesalahanku. Kalau aku pernah membuatmu terluka, berarti aku memang harus meminta maaf dan belajar menjadi lebih baik.",
+],by:"Bacaan by Gerdy"},
+{title:"Kamu Ingat SMK Budiarti?",body:[
+"Kamu masih ingat masa-masa kita di <strong>SMK Budiarti</strong>?",
+"Kadang aku suka senyum sendiri kalau mengingatnya. Dulu kita cuma menjalani hari seperti biasa: berangkat, pulang, ngobrol, bercanda, dan entah kenapa rasanya hampir selalu ada kamu di setiap cerita.",
+"Kita dulu seperti tidak pernah kehabisan waktu untuk bersama. Mau ke mana-mana bareng. Ada urusan sedikit, bareng. Jalan sebentar, bareng. Bahkan hal-hal sederhana yang sebenarnya tidak penting pun terasa menyenangkan kalau dilakukan sama kamu.",
+"<strong>Hha... ternyata sekarang aku baru sadar, justru hal-hal sederhana itu yang paling aku rindukan.</strong>",
+"Kalau waktu bisa diputar, mungkin aku akan lebih menghargai setiap detik yang dulu kita anggap biasa.",
+],by:"Bacaan by Gerdy"},
+{title:"Bolos Demi Ngobrol Sama Kamu",body:[
+"Kamu inget nggak, dulu sekolah kita jarang banget ada guru masuk hha.",
+"Jadi ya udah, jam pelajaran malah kepake buat ngobrol berdua, bercanda nggak jelas, sampai lupa waktu. Kadang sampai bolos, cuma demi bisa lebih lama ngobrol sama kamu.",
+"Padahal kalau dipikir-pikir, kita nggak ngapa-ngapain penting. Cuma duduk, ngobrol, ketawa nggak jelas. Tapi entah kenapa waktu itu terasa cukup buat bikin hari-hari biasa jadi hari yang selalu aku tunggu.",
+"<strong>Dulu aku pikir itu cuma cara buang waktu. Sekarang aku sadar, itu salah satu waktu paling berharga yang pernah aku punya.</strong>",
+"Kalau bisa milih ulang, aku tetap akan pilih bolos jam pelajaran itu, asal masih bisa ngobrol dan bercanda sama kamu.",
+],by:"Bacaan by Gerdy"},
+{title:"Cuanki Ke Mana-mana Berdua",body:[
+"Satu hal lagi yang nggak akan pernah aku lupain: kita makan cuanki ke mana-mana selalu berdua.",
+"Nggak peduli di mana, tukang cuanki lewat, kita samperin. Duduk pinggir jalan, sambil ngobrol receh, ketawa bareng, cuma modal semangkuk cuanki tapi rasanya udah cukup bikin bahagia seharian.",
+"Hal sesederhana itu, sekarang jadi salah satu kenangan yang paling sering muncul di kepalaku kalau lagi kangen.",
+"<strong>Ternyata kebahagiaan sesederhana itu: kamu, aku, dan semangkuk cuanki di pinggir jalan.</strong>",
+],by:"Bacaan by Gerdy"},
+{title:"Kalau Hujan Turun",body:[
+"Dan kamu ingat nggak kalau hujan turun?",
+"Dulu hujan bukan sesuatu yang membuatku ingin cepat-cepat pulang. Karena sering kali justru di saat hujan itu kita bersama.",
+"Kehujanan, berteduh, menunggu hujan reda, ngobrol tentang hal-hal random, ketawa tanpa alasan yang jelas.",
+"Dulu mungkin aku menganggapnya biasa. Sekarang kalau hujan turun, entah kenapa ingatanku malah kembali ke masa itu.",
+"Ke kamu. Ke kita. Ke masa ketika pergi ke mana pun rasanya selalu lebih menyenangkan karena ada kamu di sampingku.",
+"<strong>Lucu ya... dulu kita ingin hujannya cepat reda. Sekarang justru aku ingin kembali ke masa ketika hujan itu masih membuat kita bersama.</strong>",
+],by:"Bacaan by Gerdy"},
+{title:"Kesepuhan, Saksi Banyak Cerita Kita",body:[
+"Kamu masih ingat kita sering ke Kesepuhan?",
+"Tempat itu jadi salah satu saksi paling banyak cerita kita. Entah udah berapa kali kita ke sana, jalan berdua, foto-foto, ketawa nggak jelas, sampai cerita hal-hal random yang sebenarnya nggak penting tapi selalu seru kalau sama kamu.",
+"Setiap sudut di sana rasanya punya kenangan sendiri. Ada tempat kita biasa duduk, ada spot yang selalu kita datangi, ada obrolan panjang yang nggak pernah bikin bosan walau diulang-ulang.",
+"<strong>Sampai sekarang, kalau denger nama Kesepuhan, yang kepikiran pertama kali selalu kamu.</strong>",
+"Aku nggak nyangka satu tempat wisata bisa nyimpen sebanyak itu kenangan tentang kita berdua.",
+],by:"Bacaan by Gerdy"},
+{title:"Setelah Kita Berpisah",body:[
+"Setelah kita tidak lagi bersama, baru aku mengerti bahwa kehadiran seseorang bisa menjadi bagian dari kebiasaan yang sangat sulit hilang.",
+"Dulu ada kamu yang bisa aku cari. Sekarang aku hanya punya kenangan.",
+"Dulu kita bisa pergi ke mana-mana bersama. Sekarang untuk sekadar tahu kabarmu pun aku tidak bisa seperti dulu.",
+"Dan di situlah aku sadar...",
+"<strong>ternyata aku tidak hanya kehilangan seseorang yang aku sayang. Aku kehilangan teman terbaik dalam banyak cerita hidupku.</strong>",
+"Mungkin selama bersama aku terlalu terbiasa dengan kehadiranmu sampai lupa bahwa suatu hari aku bisa benar-benar kehilangan semuanya.",
+],by:"Bacaan by Gerdy"},
+{title:"Aku Masih Memilih Kamu",body:[
+"Aku tidak tahu apakah setelah semua ini kamu masih punya sedikit rasa untukku. Aku juga tidak tahu apakah masih ada kesempatan.",
+"Tapi kalau kamu bertanya apa yang sebenarnya aku inginkan, jawabanku sederhana:",
+"<strong>aku ingin kembali.</strong>",
+"Sekali lagi.",
+"Bukan karena aku tidak bisa menemukan orang lain. Bukan karena aku takut sendiri. Tapi karena setelah semua yang terjadi, hatiku masih memilih kamu.",
+"Aku ingin kembali bukan untuk mengulang cerita lama. Aku ingin kembali sebagai seseorang yang sudah belajar dari kesalahannya.",
+],by:"Bacaan by Gerdy"},
+{title:"Ingin Kembali, Tapi Takdir Belum Mengizinkan",body:[
+"Aku ingin kembali. Sekali lagi aku bilang itu, karena memang itu yang aku rasakan sampai sekarang.",
+"Tapi kadang aku juga sadar, mungkin takdir emang belum mau nyatuin kita lagi hha.",
+"Aku nggak tau ini cuma soal waktu yang belum pas, atau memang jalan kita udah beda. Tapi satu yang pasti, aku nggak pernah bener-bener berhenti berharap.",
+"<strong>Kalau takdir masih ngasih kesempatan sekecil apa pun, aku janji nggak akan nyia-nyiain lagi.</strong>",
+],by:"Bacaan by Gerdy"},
+{title:"Aku Kangen, Aku Ingin Ketemu",body:[
+"Jujur aku kangen. Kangen ngobrol bareng kamu, kangen ketawa bareng kamu, kangen semua hal sederhana yang dulu kita lakuin berdua.",
+"Aku ingin ketemu kamu. Bukan buat ngungkit yang udah lewat, tapi buat sekadar liat kabar kamu, ngobrol santai, atau bahkan cuma diem berdua kayak dulu di Kesepuhan.",
+"<strong>Kalau kamu masih mau, aku beneran ingin ketemu kamu.</strong>",
+"Makanya di bagian paling bawah surat ini, aku bikinin jadwal, biar kita bisa atur kapan waktu yang pas buat ketemu.",
+],by:"Bacaan by Gerdy"},
+{title:"Terakhir Kali",body:[
+"Sekali lagi aku bilang, mungkin ini terakhir kalinya aku meminta.",
+"<strong>Aku ingin kembali.</strong>",
+"Kalau masih ada sedikit ruang untukku, izinkan aku memperbaiki semuanya. Kalau aku harus mulai dari awal, aku siap. Kalau aku harus mendapatkan kepercayaanmu lagi, aku siap.",
+"Aku tidak akan menjanjikan hubungan yang sempurna. Aku hanya ingin membuktikan bahwa kali ini aku benar-benar serius untuk belajar menghargai, mendengarkan, memahami, dan menjaga kamu.",
+"Kalau pada akhirnya jawabanmu tetap bukan aku, aku akan menghargainya. Karena aku tidak ingin cintaku menjadi alasan untuk memaksamu.",
+"Tapi setidaknya kamu tahu...",
+"<strong>aku pernah benar-benar mencintaimu, aku masih menyayangimu, dan sampai sekarang aku masih ingin kita.</strong>",
+"Kalau masih ada kesempatan, sekecil apa pun itu, izinkan aku pulang. Bukan untuk mengulang masa lalu, tetapi untuk membuat cerita baru bersama kamu.",
+"Kalau kamu masih mau, gulir sedikit lagi ke bawah ya. Ada satu hal terakhir yang ingin aku minta.",
+],by:"Bacaan by Gerdy"}
+];
+
+const paper=document.getElementById("paper"), seal=document.getElementById("seal"), content=document.getElementById("content");
+let page=0, opened=false;
+function render(){
+ const p=pages[page];
+ const isLast=page===pages.length-1;
+ content.innerHTML=`<h2>${p.title}</h2>${p.body.map(x=>`<p>${x}</p>`).join("")}<div class="by">${p.by}</div>${!isLast?`<button class="scroll next" id="next">Buka halaman berikutnya →</button>`:`<a class="scroll next" href="#jadwal">Isi Jadwal Ketemuan Kita ↓</a>`}`;
+ const next=document.getElementById("next");
+ if(next) next.onclick=()=>{page++;content.style.opacity=0;content.style.transform="translateY(15px)";setTimeout(()=>{render();content.style.opacity=1;content.style.transform="none";window.scrollTo({top:paper.offsetTop-30,behavior:"smooth"})},350)};
+}
+render();
+seal.onclick=()=>{
+ if(!opened){
+  paper.classList.add("open");opened=true;
+  const audio=document.getElementById("audio");
+  audio.play().then(()=>document.getElementById("musicBtn").textContent="Ⅱ").catch(()=>{});
+  document.getElementById("musicBtn").textContent="Ⅱ";
+ }
+};
+const audio=document.getElementById("audio"), musicBtn=document.getElementById("musicBtn");
+musicBtn.onclick=()=>{
+ if(audio.paused){audio.play();musicBtn.textContent="Ⅱ"}else{audio.pause();musicBtn.textContent="♫"}
+};
+
+const bacaanJadwal=[
+"Kalau kamu beneran dateng nanti, itu artinya masih ada ruang buat kita coba lagi.",
+"Aku bakal nunggu, sesederhana dulu kita nunggu hujan reda sambil ngobrol nggak jelas.",
+"Nggak usah dipikirin berat-berat. Anggap aja ini kayak dulu, janjian ketemu abis jam pelajaran kosong, terus jajan cuanki bareng."
+];
+const cetakBtn=document.getElementById("cetakBtn"), printedArea=document.getElementById("printedArea"), printedPaper=document.getElementById("printedPaper"), reminderText=document.getElementById("reminderText"), kirimBtn=document.getElementById("kirimBtn");
+let jadwalRingkasan="";
+cetakBtn.onclick=()=>{
+ const tanggal=document.getElementById("fTanggal").value;
+ const jam=document.getElementById("fJam").value;
+ const tempat=document.getElementById("fTempat").value.trim();
+ const pesan=document.getElementById("fPesan").value.trim();
+ if(!tanggal||!jam||!tempat){alert("Isi tanggal, jam, dan tempatnya dulu ya, baru bisa dicetak suratnya ♥");return}
+ const tanggalFormat=new Date(tanggal+"T00:00:00").toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+ const bacaan=bacaanJadwal[Math.floor(Math.random()*bacaanJadwal.length)];
+ printedPaper.innerHTML=`<h3>Surat Jadwal Ketemuan</h3>
+ <div class="row"><b>Tanggal:</b> ${tanggalFormat}</div>
+ <div class="row"><b>Jam:</b> ${jam} WIB</div>
+ <div class="row"><b>Tempat:</b> ${tempat}</div>
+ ${pesan?`<div class="row"><b>Pesan buat Gerdy:</b> ${pesan}</div>`:""}
+ <div class="bacaan">${bacaan}</div>`;
+ jadwalRingkasan=`Surat Jadwal Ketemuan\nTanggal: ${tanggalFormat}\nJam: ${jam} WIB\nTempat: ${tempat}${pesan?`\nPesan: ${pesan}`:""}`;
+ reminderText.textContent="Jangan lupa kirim surat jadwal ini ke Gerdy ya ♥";
+ printedArea.classList.remove("hidden");
+ printedArea.scrollIntoView({behavior:"smooth",block:"start"});
+};
+kirimBtn.onclick=async()=>{
+ if(!jadwalRingkasan)return;
+ if(navigator.share){
+  try{await navigator.share({title:"Surat Jadwal Ketemuan",text:jadwalRingkasan})}catch(e){}
+ }else{
+  try{await navigator.clipboard.writeText(jadwalRingkasan);alert("Detail jadwal sudah disalin. Tinggal kirim ke Gerdy lewat chat ya ♥")}catch(e){alert(jadwalRingkasan)}
+ }
+};
+</script>
+</body>
+</html>
